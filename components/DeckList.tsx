@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 
 type Props = {
@@ -5,25 +6,26 @@ type Props = {
     onSelectDeck: (deck: {id: string, name: string}) => void;
 };
 
-const testDecks = {
-    kanji: [
-        {id: '1', name: 'JLPT N5 Kanji'},
-        {id: '2', name: 'JLPT N4 Kanji'},
-        {id: '3', name: 'JLPT N3 Kanji'},
-        {id: '4', name: 'JLPT N2 Kanji'},
-        {id: '5', name: 'JLPT N1 Kanji'}
-    ], 
-    vocab: [
-        {id: '6', name: 'JLPT N5 vocab'},
-        {id: '7', name: 'JLPT N4 vocab'},
-        {id: '8', name: 'JLPT N3 vocab'},
-        {id: '9', name: 'JLPT N2 vocab'},
-        {id: '10', name: 'JLPT N1 vocab'}
-    ]
+type card = {
+    id: string, 
+    front: string,
+    back: string
 }
 
+type deck = {
+    id: string, 
+    name: string, 
+    cards: card []
+}
+
+const testDecks = require('../data/decks.json')
+
 export default function DeckList({type, onSelectDeck}: Props) {
-    const decks = testDecks[type] || [];
+    const [decks, setDecks] = useState<deck[]>([])
+
+    useEffect(() => {
+        setDecks(testDecks[type] || []);
+    }, [type]);
 
     return (
         <View style={styles.container}>

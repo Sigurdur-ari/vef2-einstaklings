@@ -1,5 +1,5 @@
 import DeckList from "@/components/DeckList";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 export default function Kanji() {
   return (
