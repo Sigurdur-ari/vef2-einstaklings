@@ -4,7 +4,7 @@ import { View, StyleSheet } from "react-native";
 export default function Kanji() {
   return (
     <View style={styles.container}>
-      <DeckList type="kanji" onSelectDeck={(deck) => alert("Deck selected " + deck.name)}/>
+      <DeckList type="kanji"/>
     </View>
   );
 }

@@ -5,7 +5,7 @@ export default function Vocab() {
 
   return (
     <View style={styles.container}>
-      <DeckList type="vocab" onSelectDeck={(deck) => alert("Deck selected " + deck.name)}/>
+      <DeckList type="vocab"/>
     </View>
   );
 }
@@ -13,7 +13,7 @@ export default function Vocab() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
   }
 });

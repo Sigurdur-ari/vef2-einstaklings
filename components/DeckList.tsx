@@ -1,30 +1,31 @@
 import { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 
 type Props = {
     type: 'kanji' | 'vocab';
-    onSelectDeck: (deck: {id: string, name: string}) => void;
 };
 
-type card = {
+type CardT = {
     id: string, 
     front: string,
     back: string
 }
 
-type deck = {
+type DeckT = {
     id: string, 
     name: string, 
-    cards: card []
+    cards: CardT []
 }
 
-const testDecks = require('../data/decks.json')
+const Decks = require('../data/decks.json')
 
-export default function DeckList({type, onSelectDeck}: Props) {
-    const [decks, setDecks] = useState<deck[]>([])
+export default function DeckList({type}: Props) {
+    const [decks, setDecks] = useState<DeckT[]>([]);
+    const router = useRouter();
 
     useEffect(() => {
-        setDecks(testDecks[type] || []);
+        setDecks(Decks[type] || []);
     }, [type]);
 
     return (
@@ -36,7 +37,7 @@ export default function DeckList({type, onSelectDeck}: Props) {
             data={decks}
             keyExtractor={(deck) => deck.id}
             renderItem={({ item }) => (
-                <TouchableOpacity style={styles.deckButton} onPress={() => onSelectDeck(item)}>
+                <TouchableOpacity style={styles.deckButton} onPress={() => router.push(`/deck/${item.id}?type=${type}`)}>
                     <Text style={styles.deckText}>{item.name}</Text>
                 </TouchableOpacity>
             )}

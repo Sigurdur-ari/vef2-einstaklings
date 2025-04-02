@@ -18,7 +18,7 @@
             {"id": "k9", "front": "立", "back": "stand"},
             {"id": "k10", "front": "代", "back": "substitute, preiod"}
         ]}, 
-        {"id": "1", 
+        {"id": "3", 
         "name": "Everyday Kanji",
         "cards": [
             {"id": "k11", "front": "木", "back": "tree"},

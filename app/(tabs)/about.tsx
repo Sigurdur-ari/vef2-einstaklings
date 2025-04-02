@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 20,
     alignItems: "center",
+    maxWidth: 700
   },
   header: {
     fontSize: 28,
