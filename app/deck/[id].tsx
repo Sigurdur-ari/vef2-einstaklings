@@ -1,6 +1,9 @@
-import Deck from '@/components/Deck';
+import Button from '@/components/Button';
+import CardList from '@/components/CardList';
+import StudyList from '@/components/StydyList';
 import { useLocalSearchParams } from 'expo-router';
-import { Text, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { Text, StyleSheet, View, Pressable } from 'react-native';
 
 const Decks = require('../../data/decks.json');
 
@@ -16,11 +19,11 @@ type DeckT = {
     cards: CardT []
 }
 
-type DeckTypes = {
-
-}
 
 export default function DeckScreen() {
+    const [showStudyList, setShowStudyList] = useState<boolean>(false);
+    const [showCardList, setShowCardList] = useState<boolean>(false);
+
     const { id, type } = useLocalSearchParams();
 
     if (!type || typeof type !== 'string' || !Decks[type]) {
@@ -33,9 +36,50 @@ export default function DeckScreen() {
         return <Text style={styles.error}>Deck not found</Text>;
     }
 
-    return <Deck deck={deck} />;
+    const handleStudy = () => {
+        setShowCardList(false);
+        setShowStudyList(true);
+    };
+
+    const handleList = () => {
+        setShowStudyList(false);
+        setShowCardList(true);
+    };
+
+    return (
+        <View style={styles.wrapper}>
+            <Text style={styles.heading}>Do you want to study the cards or see a list of all cards?</Text>
+            <View style={styles.buttons}>
+                <Button label="Study" onPress={handleStudy} theme='navigation'/>
+                <Button label="See list" onPress={handleList} theme='navigation'/>
+            </View>
+
+            {showStudyList && <StudyList deck={deck}/>}
+            {showCardList && <CardList deck={deck}/>}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-    error: { fontSize: 18, color: 'red', textAlign: 'center', marginTop: 20 },
+    error: { 
+        fontSize: 18, 
+        color: 'red', 
+        textAlign: 'center', 
+        marginTop: 20 
+    },
+    wrapper: { 
+        flex: 1,
+        padding: 20,
+    },
+    buttons: {
+        flexDirection: "row",
+        justifyContent: 'center'
+    },
+    heading: {
+        fontSize: 24,
+        textAlign: 'center',
+        marginBottom: 10,
+
+    }
+
 });

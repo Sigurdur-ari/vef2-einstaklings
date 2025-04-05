@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, FlatList, TouchableOpacity, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 
 type Props = {
@@ -33,15 +33,20 @@ export default function DeckList({type}: Props) {
         <Text style={styles.header}>
             {type === 'kanji' ? 'Kanji Decks' : 'Vocabulary Decks'}
         </Text>
-        <FlatList
-            data={decks}
-            keyExtractor={(deck) => deck.id}
-            renderItem={({ item }) => (
-                <TouchableOpacity style={styles.deckButton} onPress={() => router.push(`/deck/${item.id}?type=${type}`)}>
-                    <Text style={styles.deckText}>{item.name}</Text>
-                </TouchableOpacity>
-            )}
-        />
+        <View style={styles.list_container}>
+            <FlatList
+                data={decks}
+                keyExtractor={(deck) => deck.id}
+                renderItem={({ item }) => (
+                    <TouchableOpacity style={styles.deckButton} onPress={() => router.push(`/deck/${item.id}?type=${type}`)}>
+                        <Text style={styles.deckText}>{item.name}</Text>
+                    </TouchableOpacity>
+                )} 
+                numColumns={2} 
+                columnWrapperStyle={styles.grid_row}
+
+            />
+        </View>
     </View>
 )
 }
@@ -57,6 +62,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     deckButton: {
+        height: 60,
         padding: 15,
         backgroundColor: '#3498db',
         borderRadius: 10,
@@ -67,4 +73,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
     },
+    list_container: {
+        flex: 1
+    },
+    grid_row: {
+        gap: 10,
+    }
 });

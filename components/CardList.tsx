@@ -16,7 +16,7 @@ type Props = {
     deck: DeckT;
 };
 
-export default function Deck({ deck }: Props) {
+export default function CardList({ deck }: Props) {
     
     return (
         <View style={styles.container}>
@@ -36,10 +36,25 @@ export default function Deck({ deck }: Props) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, padding: 20 },
-    header: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
-    error: { fontSize: 18, color: 'red', textAlign: 'center', marginTop: 20 },
-    card: { padding: 15, borderBottomWidth: 1 },
-    front: { fontSize: 18, fontWeight: 'bold' },
-    back: { fontSize: 16, color: 'gray' },
+    container: { 
+        flex: 1, 
+        padding: 20 
+    },
+    header: { 
+        fontSize: 24, 
+        fontWeight: 'bold', 
+        marginBottom: 10 
+    },
+    card: { 
+        padding: 15, 
+        borderBottomWidth: 1 
+    },
+    front: { 
+        fontSize: 18, 
+        fontWeight: 'bold' 
+    },
+    back: { 
+        fontSize: 16, 
+        color: 'gray' 
+    },
 });

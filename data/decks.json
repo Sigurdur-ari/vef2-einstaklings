@@ -1,60 +1,140 @@
 {
     "kanji": [
-        {"id": "1", 
+      {
+        "id": "1",
         "name": "JLPT N5 Kanji",
         "cards": [
-            {"id": "k1", "front": "日", "back": "sun, day"},
-            {"id": "k2", "front": "国", "back": "country"},
-            {"id": "k3", "front": "年", "back": "year"},
-            {"id": "k4", "front": "本", "back": "book, origin"},
-            {"id": "k5", "front": "時", "back": "time, hour"}
-        ]},
-        {"id": "2", 
+          {"id": "k1", "front": "日", "back": "sun, day"},
+          {"id": "k2", "front": "国", "back": "country"},
+          {"id": "k3", "front": "年", "back": "year"},
+          {"id": "k4", "front": "本", "back": "book, origin"},
+          {"id": "k5", "front": "時", "back": "time, hour"}
+        ]
+      },
+      {
+        "id": "2",
         "name": "JLPT N4 Kanji",
         "cards": [
-            {"id": "k6", "front": "者", "back": "someone, person"},
-            {"id": "k7", "front": "方", "back": "direction"},
-            {"id": "k8", "front": "新", "back": "new"},
-            {"id": "k9", "front": "立", "back": "stand"},
-            {"id": "k10", "front": "代", "back": "substitute, preiod"}
-        ]}, 
-        {"id": "3", 
+          {"id": "k6", "front": "者", "back": "someone, person"},
+          {"id": "k7", "front": "方", "back": "direction"},
+          {"id": "k8", "front": "新", "back": "new"},
+          {"id": "k9", "front": "立", "back": "stand"},
+          {"id": "k10", "front": "代", "back": "substitute, period"}
+        ]
+      },
+      {
+        "id": "3",
         "name": "Everyday Kanji",
         "cards": [
-            {"id": "k11", "front": "木", "back": "tree"},
-            {"id": "k12", "front": "夕", "back": "evening"},
-            {"id": "k13", "front": "人", "back": "person"},
-            {"id": "k14", "front": "大", "back": "big"},
-            {"id": "k15", "front": "生", "back": "life"}
-        ]}
-    ], 
+          {"id": "k11", "front": "木", "back": "tree"},
+          {"id": "k12", "front": "夕", "back": "evening"},
+          {"id": "k13", "front": "人", "back": "person"},
+          {"id": "k14", "front": "大", "back": "big"},
+          {"id": "k15", "front": "生", "back": "life"}
+        ]
+      },
+      {
+        "id": "4",
+        "name": "Weather Kanji",
+        "cards": [
+          {"id": "k16", "front": "雨", "back": "rain"},
+          {"id": "k17", "front": "雪", "back": "snow"},
+          {"id": "k18", "front": "風", "back": "wind"},
+          {"id": "k19", "front": "空", "back": "sky"},
+          {"id": "k20", "front": "気", "back": "spirit, air"}
+        ]
+      },
+      {
+        "id": "5",
+        "name": "JLPT N3 Kanji",
+        "cards": [
+          {"id": "k21", "front": "感", "back": "feeling"},
+          {"id": "k22", "front": "想", "back": "think"},
+          {"id": "k23", "front": "情", "back": "emotion"},
+          {"id": "k24", "front": "愛", "back": "love"},
+          {"id": "k25", "front": "苦", "back": "suffering"},
+          {"id": "k26", "front": "楽", "back": "comfort, music"},
+          {"id": "k27", "front": "急", "back": "hurry"},
+          {"id": "k28", "front": "死", "back": "death"},
+          {"id": "k29", "front": "病", "back": "illness"},
+          {"id": "k30", "front": "強", "back": "strong"}
+        ]
+      }
+    ],
     "vocab": [
-        {"id": "1", 
+      {
+        "id": "1",
         "name": "JLPT N5 Vocab",
         "cards": [
-            {"id": "v1", "front": "下さい", "back": "Please give me, please"},
-            {"id": "v2", "front": "大きい", "back": "big, large"},
-            {"id": "v3", "front": "正しい", "back": "correct, true, right"},
-            {"id": "v4", "front": "入り口", "back": "entrance"},
-            {"id": "v5", "front": "ふじ山", "back": "Mt Fuji"}
-        ]},
-        {"id": "2", 
+          {"id": "v1", "front": "下さい", "back": "please give me"},
+          {"id": "v2", "front": "大きい", "back": "big, large"},
+          {"id": "v3", "front": "正しい", "back": "correct, true"},
+          {"id": "v4", "front": "入り口", "back": "entrance"},
+          {"id": "v5", "front": "ふじ山", "back": "Mt. Fuji"}
+        ]
+      },
+      {
+        "id": "2",
         "name": "JLPT N4 Vocab",
         "cards": [
-            {"id": "v6", "front": "小さい", "back": "small"},
-            {"id": "v7", "front": "立つ", "back": "to stand"},
-            {"id": "v8", "front": "お父さん", "back": "father"},
-            {"id": "v9", "front": "お母さん", "back": "mother"},
-            {"id": "v10", "front": "外人", "back": "Foreigner"}
-        ]},
-        {"id": "3", 
+          {"id": "v6", "front": "小さい", "back": "small"},
+          {"id": "v7", "front": "立つ", "back": "to stand"},
+          {"id": "v8", "front": "お父さん", "back": "father"},
+          {"id": "v9", "front": "お母さん", "back": "mother"},
+          {"id": "v10", "front": "外人", "back": "foreigner"}
+        ]
+      },
+      {
+        "id": "3",
         "name": "Everyday Vocab",
         "cards": [
-            {"id": "v11", "front": "おはようございます", "back": "Good morning!"},
-            {"id": "v12", "front": "こんにちは", "back": "Hello!"},
-            {"id": "v13", "front": " いいですよ", "back": "Its good"},
-            {"id": "v14", "front": "たくさん", "back": "A lot"},
-            {"id": "v15", "front": "よろしくお願いします", "back": "Nice to meet you"}
-        ]}
+          {"id": "v11", "front": "おはようございます", "back": "good morning"},
+          {"id": "v12", "front": "こんにちは", "back": "hello"},
+          {"id": "v13", "front": "いいですよ", "back": "it's good"},
+          {"id": "v14", "front": "たくさん", "back": "a lot"},
+          {"id": "v15", "front": "よろしくお願いします", "back": "nice to meet you"}
+        ]
+      },
+      {
+        "id": "4",
+        "name": "Travel Vocab",
+        "cards": [
+          {"id": "v16", "front": "空港", "back": "airport"},
+          {"id": "v17", "front": "電車", "back": "train"},
+          {"id": "v18", "front": "地図", "back": "map"},
+          {"id": "v19", "front": "切符", "back": "ticket"},
+          {"id": "v20", "front": "乗る", "back": "to ride"},
+          {"id": "v21", "front": "降りる", "back": "to get off"},
+          {"id": "v22", "front": "駅", "back": "station"},
+          {"id": "v23", "front": "旅", "back": "trip"}
+        ]
+      },
+      {
+        "id": "5",
+        "name": "JLPT N3 Vocab",
+        "cards": [
+          {"id": "v24", "front": "経験", "back": "experience"},
+          {"id": "v25", "front": "必要", "back": "necessary"},
+          {"id": "v26", "front": "準備", "back": "preparation"},
+          {"id": "v27", "front": "最近", "back": "recently"},
+          {"id": "v28", "front": "問題", "back": "problem"},
+          {"id": "v29", "front": "安心", "back": "relief"},
+          {"id": "v30", "front": "無理", "back": "impossible"},
+          {"id": "v31", "front": "返事", "back": "reply"},
+          {"id": "v32", "front": "住所", "back": "address"},
+          {"id": "v33", "front": "連絡", "back": "contact"},
+          {"id": "v34", "front": "自然", "back": "nature"},
+          {"id": "v35", "front": "意味", "back": "meaning"},
+          {"id": "v36", "front": "習慣", "back": "habit"},
+          {"id": "v37", "front": "機会", "back": "opportunity"},
+          {"id": "v38", "front": "必要性", "back": "necessity"},
+          {"id": "v39", "front": "状況", "back": "situation"},
+          {"id": "v40", "front": "説明", "back": "explanation"},
+          {"id": "v41", "front": "選ぶ", "back": "to choose"},
+          {"id": "v42", "front": "決める", "back": "to decide"},
+          {"id": "v43", "front": "助ける", "back": "to help"}
+        ]
+      }
     ]
-}
+  }
+  
