@@ -116,16 +116,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         width: '90%',
         textAlign: 'center',
-        position: 'absolute',
-        top: 0,
     },
     back_text: {
         fontSize: 24,
         color: 'gray',
         width: '90%',
         textAlign: 'center',
-        position: 'absolute',
-        top: 0,
     },
     navigation: {
         flexDirection: 'row',

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Text, StyleSheet, View, FlatList, TouchableOpacity, Platform } from 'react-native';
+import { Text, StyleSheet, View, FlatList, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import Decks from '../data/decks.json';
@@ -24,10 +24,13 @@ type DeckT = {
 export default function DeckList({type}: Props) {
     const [decks, setDecks] = useState<DeckT[]>([]);
     const router = useRouter();
+    const { width } = useWindowDimensions();
 
     useEffect(() => {
         setDecks(Decks[type] || []);
     }, [type]);
+
+    const numColumns = width > 1000 ? 3 : width > 700 ? 2 : 1;
 
     return (
         <View style={styles.container}>
@@ -43,8 +46,8 @@ export default function DeckList({type}: Props) {
                         <Text style={styles.deckText}>{item.name}</Text>
                     </TouchableOpacity>
                 )} 
-                numColumns={2} 
-                columnWrapperStyle={styles.grid_row}
+                numColumns={numColumns} 
+                columnWrapperStyle={numColumns > 1 ? styles.grid_row : undefined}
 
             />
         </View>
@@ -63,11 +66,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     deckButton: {
-        height: 60,
+        width: 300,
+        height: 80,
         padding: 15,
         backgroundColor: '#6DC7D1',
         borderRadius: 10,
         marginBottom: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     deckText: {
         color: '#E2F3F4',
@@ -79,6 +85,6 @@ const styles = StyleSheet.create({
         flex: 1
     },
     grid_row: {
-        gap: 10,
+        gap: 10
     }
 });

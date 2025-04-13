@@ -1,9 +1,10 @@
 import Button from '@/components/Button';
 import CardList from '@/components/CardList';
 import StudyList from '@/components/StydyList';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Text, StyleSheet, View, Pressable } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Decks = require('../../data/decks.json');
 
@@ -25,6 +26,8 @@ export default function DeckScreen() {
     const [showCardList, setShowCardList] = useState<boolean>(false);
 
     const { id, type } = useLocalSearchParams();
+    const router = useRouter();
+    const navigation = useNavigation();
 
     if (!type || typeof type !== 'string' || !Decks[type]) {
         return <Text style={styles.error}>Invalid deck type</Text>;
@@ -48,6 +51,13 @@ export default function DeckScreen() {
 
     return (
         <View style={styles.wrapper}>
+            {/* Sýna manual back takka ef navigation stack hverfur við refresh á web */}
+            { !navigation.canGoBack()&& (type === 'kanji' || type === 'vocab') && (
+                <View style={styles.backWrapper}>
+                    <Button label="⬅ Back to Decks" onPress={() => router.replace(`/(tabs)/${type}`)} />
+                </View>
+            )}
+
             <Text style={styles.heading}>Do you want to study the cards or see a list of all cards?</Text>
             <View style={styles.buttons}>
                 <Button label="Study" onPress={handleStudy} />
@@ -71,6 +81,10 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: '#E2F3F4'
+    },
+    backWrapper: {
+        marginBottom: 15,
+        alignSelf: 'flex-start'
     },
     buttons: {
         flexDirection: "row",
