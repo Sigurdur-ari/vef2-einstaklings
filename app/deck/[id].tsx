@@ -1,10 +1,11 @@
 import Button from '@/components/Button';
 import CardList from '@/components/CardList';
 import StudyList from '@/components/StydyList';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Decks = require('../../data/decks.json');
 
@@ -28,6 +29,11 @@ export default function DeckScreen() {
     const { id, type } = useLocalSearchParams();
     const router = useRouter();
     const navigation = useNavigation();
+
+    const { user, loading } = useAuth();
+      
+    if (loading) return <Text>Loading...</Text>;
+    if (!user) return <Redirect href="../login" />;
 
     if (!type || typeof type !== 'string' || !Decks[type]) {
         return <Text style={styles.error}>Invalid deck type</Text>;
