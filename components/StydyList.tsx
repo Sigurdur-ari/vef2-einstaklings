@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, Button } from 'react-native';
+import { useRef, useState } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, Button, Animated } from 'react-native';
 
 type CardT = {
     id: string, 
@@ -20,12 +20,29 @@ type Props = {
 export default function StudyList({ deck }: Props) {
     const [currentCardIndex, setCurrentCardIndex] = useState(0); 
     const [isFlipped, setIsFlipped] = useState(false); 
+    const rotation = useRef(new Animated.Value(0)).current;
 
     const currentCard = deck.cards[currentCardIndex];
 
     const handleFlip = () => {
-        setIsFlipped(!isFlipped); 
+        Animated.timing(rotation, {
+            toValue: isFlipped ? 0 : 180,
+            duration: 400,
+            useNativeDriver: true,
+        }).start(() => {
+            setIsFlipped(!isFlipped);
+        }) 
     };
+
+    const rotateFront = rotation.interpolate({
+        inputRange: [0, 180],
+        outputRange: ['0deg', '180deg'],
+    });
+    
+    const rotateBack = rotation.interpolate({
+        inputRange: [0, 180],
+        outputRange: ['180deg', '360deg'],
+    });
 
     const handleNextCard = () => {
         if (currentCardIndex < deck.cards.length - 1) {
@@ -47,9 +64,14 @@ export default function StudyList({ deck }: Props) {
                 <Text style={styles.header}>{deck.name}</Text>
             </View>
 
-            <TouchableOpacity onPress={handleFlip}>
-                <View style={styles.card}>
-                        <Text style={isFlipped ? styles.back: styles.front}>{isFlipped ? currentCard.back : currentCard.front}</Text>
+            <TouchableOpacity onPress={handleFlip} activeOpacity={1}>
+                <View style={styles.card_container}>
+                    <Animated.View style={[styles.card, styles.card_front, { transform: [{ rotateY: rotateFront }] }]}>
+                        <Text style={styles.front_text}>{currentCard.front}</Text>
+                    </Animated.View>
+                    <Animated.View style={[styles.card, styles.card_back, { transform: [{ rotateY: rotateBack }] }]}>
+                        <Text style={styles.back_text}>{currentCard.back}</Text>
+                    </Animated.View>
                 </View>
             </TouchableOpacity>
 
@@ -86,23 +108,46 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         borderRadius: 10,
+        backgroundColor: '#6DC7D1',
+        backfaceVisibility: 'hidden',
     },
-    front: {
+    front_text: {
         fontSize: 24,
         fontWeight: 'bold',
         width: '90%',
-        textAlign: 'center'
+        textAlign: 'center',
+        position: 'absolute',
+        top: 0,
     },
-    back: {
+    back_text: {
         fontSize: 24,
         color: 'gray',
         width: '90%',
-        textAlign: 'center'
+        textAlign: 'center',
+        position: 'absolute',
+        top: 0,
     },
     navigation: {
         flexDirection: 'row',
         justifyContent: 'center',
         gap: 60,
         marginTop: 20,
+    },
+    card_container: {
+        width: '100%',
+        maxWidth: 400,
+        height: 200,
+        alignSelf: 'center',
+    },
+    card_front: {
+        backfaceVisibility: 'hidden',
+        position: 'absolute',
+        top: 0,
+        zIndex: 1,
+    },
+    card_back: {
+        backfaceVisibility: 'hidden',
+        position: 'absolute',
+        top: 0,
     },
 });

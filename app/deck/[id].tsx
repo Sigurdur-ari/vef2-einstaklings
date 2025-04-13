@@ -50,8 +50,8 @@ export default function DeckScreen() {
         <View style={styles.wrapper}>
             <Text style={styles.heading}>Do you want to study the cards or see a list of all cards?</Text>
             <View style={styles.buttons}>
-                <Button label="Study" onPress={handleStudy} theme='navigation'/>
-                <Button label="See list" onPress={handleList} theme='navigation'/>
+                <Button label="Study" onPress={handleStudy} />
+                <Button label="See list" onPress={handleList}/>
             </View>
 
             {showStudyList && <StudyList deck={deck}/>}
@@ -70,16 +70,17 @@ const styles = StyleSheet.create({
     wrapper: { 
         flex: 1,
         padding: 20,
+        backgroundColor: '#E2F3F4'
     },
     buttons: {
         flexDirection: "row",
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 20,
     },
     heading: {
         fontSize: 24,
         textAlign: 'center',
         marginBottom: 10,
-
     }
 
 });

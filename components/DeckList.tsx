@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, FlatList, TouchableOpacity, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 
+import Decks from '../data/decks.json';
+
+
 type Props = {
     type: 'kanji' | 'vocab';
 };
@@ -17,8 +20,6 @@ type DeckT = {
     name: string, 
     cards: CardT []
 }
-
-const Decks = require('../data/decks.json')
 
 export default function DeckList({type}: Props) {
     const [decks, setDecks] = useState<DeckT[]>([]);
@@ -64,13 +65,14 @@ const styles = StyleSheet.create({
     deckButton: {
         height: 60,
         padding: 15,
-        backgroundColor: '#3498db',
+        backgroundColor: '#6DC7D1',
         borderRadius: 10,
         marginBottom: 10,
     },
     deckText: {
-        color: 'white',
+        color: '#E2F3F4',
         fontSize: 18,
+        fontWeight: 'bold',
         textAlign: 'center',
     },
     list_container: {

@@ -2,31 +2,23 @@ import { StyleSheet, View, Pressable, Text } from 'react-native';
 
 type Props = {
   label: string;
-  theme?: 'navigation';
   onPress?: () => void;
 };
 
-export default function Button({ label, theme, onPress }: Props) {
-  const isNavigation = theme === 'navigation';
+export default function Button({ label, onPress }: Props) {
 
   return (
     <View
-      style={[
-        styles.buttonContainer,
-        isNavigation && styles.navigationContainer,
-      ]}>
+      style={styles.buttonContainer}>
       <Pressable
         style={({ pressed }) => [
           styles.button,
-          isNavigation ? styles.navigationButton : styles.defaultButton,
+          styles.defaultButton,
           pressed && styles.pressed,
         ]}
         onPress={onPress}>
         <Text
-          style={[
-            styles.buttonLabel,
-            isNavigation ? styles.navigationLabel : {},
-          ]}>
+          style={styles.buttonLabel}>
           {label}
         </Text>
       </Pressable>
@@ -40,14 +32,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  navigationContainer: {
-    borderWidth: 4,
-    borderColor: '#000',
-    borderRadius: 18,
-    padding: 3,
-  },
   button: {
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#6DC7D1',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
@@ -55,18 +43,12 @@ const styles = StyleSheet.create({
     minWidth: 160,
   },
   defaultButton: {
-    backgroundColor: '#25292e',
-  },
-  navigationButton: {
-    backgroundColor: '#fff',
+    backgroundColor: '#E2F3F4',
   },
   buttonLabel: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#fff',
-  },
-  navigationLabel: {
-    color: '#25292e',
+    color: '#6DC7D1',
   },
   pressed: {
     opacity: 0.75,

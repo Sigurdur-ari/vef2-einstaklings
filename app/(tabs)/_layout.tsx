@@ -1,28 +1,26 @@
 import { Tabs } from 'expo-router';
-
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
 
 
 export default function TabLayout() {
   return (
     <Tabs
     screenOptions={{
-        tabBarActiveTintColor: '#ffd33d',
+        tabBarActiveTintColor: '#E2F3F4',
         headerStyle: {
-          backgroundColor: '#25292e',
+          backgroundColor: '#6DC7D1',
         },
         headerShadowVisible: false,
-        headerTintColor: '#fff',
+        headerTintColor: '#000',
         tabBarStyle: {
-        backgroundColor: '#25292e',
+          backgroundColor: '#6DC7D1',
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Heim',
+          title: 'Home',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
           ),
@@ -33,14 +31,14 @@ export default function TabLayout() {
         options={{
           title: 'Kanji',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+            <Ionicons name={focused ? 'language-sharp' : 'language-outline'} color={color} size={24} />
           ),
         }}
       />
       <Tabs.Screen
         name="vocab"
         options={{
-          title: 'Orðaforði',
+          title: 'Vocabulary',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'chatbubbles-sharp' : 'chatbubbles-outline'} color={color} size={24} />
           ),
@@ -49,7 +47,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="about"
         options={{
-          title: 'Um Appið',
+          title: 'About',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
           ),

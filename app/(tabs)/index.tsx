@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingHorizontal: 20,
-    backgroundColor: "#fafafa",
+    backgroundColor: '#E2F3F4'
   },
   content: {
     gap: 10,
