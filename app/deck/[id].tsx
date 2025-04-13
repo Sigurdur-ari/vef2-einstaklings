@@ -3,9 +3,10 @@ import CardList from '@/components/CardList';
 import StudyList from '@/components/StydyList';
 import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, useWindowDimensions, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '@/contexts/AuthContext';
+import UserHeader from '@/components/UserHeader';
 
 const Decks = require('../../data/decks.json');
 
@@ -31,6 +32,10 @@ export default function DeckScreen() {
     const navigation = useNavigation();
 
     const { user, loading } = useAuth();
+
+    const { width } = useWindowDimensions();
+    const isWeb = Platform.OS === 'web';
+    const isLargeScreen = width >= 800;
       
     if (loading) return <Text>Loading...</Text>;
     if (!user) return <Redirect href="../login" />;
@@ -57,6 +62,8 @@ export default function DeckScreen() {
 
     return (
         <View style={styles.wrapper}>
+            {(!isWeb || !isLargeScreen) && <UserHeader />}
+            <View style={styles.gap}></View>
             {/* Sýna manual back takka ef navigation stack hverfur við refresh á web */}
             { !navigation.canGoBack()&& (type === 'kanji' || type === 'vocab') && (
                 <View style={styles.backWrapper}>
@@ -101,6 +108,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
         textAlign: 'center',
         marginBottom: 10,
-    }
+    },
+    gap: {
+        marginBottom: 20,
+      }
 
 });

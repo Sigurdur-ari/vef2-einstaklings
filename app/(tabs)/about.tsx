@@ -1,14 +1,21 @@
+import UserHeader from "@/components/UserHeader";
 import { useAuth } from "@/contexts/AuthContext";
 import { Redirect } from "expo-router";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, useWindowDimensions, Platform } from "react-native";
 
 export default function About() {
   const { user, loading } = useAuth();
+
+  const { width } = useWindowDimensions();
+  const isWeb = Platform.OS === 'web';
+  const isLargeScreen = width >= 800;
 
   if (loading) return <Text>Loading...</Text>;
   if (!user) return <Redirect href="../login" />;
   return (
     <View style={styles.container}>
+          {(!isWeb || !isLargeScreen) && <UserHeader />}
+          <View style={styles.gap}></View>
           <View style={styles.content}>
             <Text style={styles.header}>Um Japanska Flashcard appið</Text>
             <Text style={styles.info}>Þetta app er einstaklingsverkefnið mitt í áfanganum Vefforritun 2 sem kennd er í Háskóla Íslands</Text>
@@ -30,7 +37,8 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 20,
     alignItems: "center",
-    maxWidth: 700
+    maxWidth: 700,
+    flex: 1,
   },
   header: {
     fontSize: 28,
@@ -43,4 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
+  gap: {
+    marginBottom: 20,
+  }
 });

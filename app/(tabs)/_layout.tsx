@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import UserHeader from '@/components/UserHeader';
+import { Platform } from 'react-native';
 
 
 export default function TabLayout() {
@@ -25,7 +26,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
           ),
-          headerRight: () => <UserHeader />
+          headerRight: () => (Platform.OS === 'web' ? <UserHeader /> : null)
         }}
       />
       <Tabs.Screen
@@ -35,7 +36,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'language-sharp' : 'language-outline'} color={color} size={24} />
           ),
-          headerRight: () => <UserHeader />
+          headerRight: () => (Platform.OS === 'web' ? <UserHeader /> : null)
         }}
       />
       <Tabs.Screen
@@ -45,7 +46,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'chatbubbles-sharp' : 'chatbubbles-outline'} color={color} size={24} />
           ),
-          headerRight: () => <UserHeader />
+          headerRight: () => (Platform.OS === 'web' ? <UserHeader /> : null)
         }}
       />
       <Tabs.Screen
@@ -55,7 +56,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
           ),
-          headerRight: () => <UserHeader />
+          headerRight: () => (Platform.OS === 'web' ? <UserHeader /> : null)
         }}
       />
     </Tabs>

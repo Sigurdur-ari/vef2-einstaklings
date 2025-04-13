@@ -2,6 +2,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import UserHeader from "../components/UserHeader"
+import { Platform } from 'react-native';
 
 export default function RootLayout() {
   return (
@@ -25,7 +26,7 @@ export default function RootLayout() {
               backgroundColor: '#6DC7D1', 
             },
             headerTintColor: '#000',
-            headerRight: () => <UserHeader />,
+            headerRight: () => (Platform.OS === 'web' ? <UserHeader /> : null)
           }} 
         />
 

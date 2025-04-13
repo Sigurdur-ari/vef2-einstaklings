@@ -46,15 +46,17 @@ export default function StudyList({ deck }: Props) {
 
     const handleNextCard = () => {
         if (currentCardIndex < deck.cards.length - 1) {
+            setIsFlipped(false);
+            rotation.setValue(0);
             setCurrentCardIndex(currentCardIndex + 1);
-            setIsFlipped(false); 
         }
     };
-
+    
     const handlePreviousCard = () => {
         if (currentCardIndex > 0) {
+            setIsFlipped(false);
+            rotation.setValue(0);
             setCurrentCardIndex(currentCardIndex - 1);
-            setIsFlipped(false); 
         }
     };
 
