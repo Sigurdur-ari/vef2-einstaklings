@@ -1,50 +1,58 @@
-# Welcome to your Expo app 👋
+# The Japanese Flashcard App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Þetta verkefni er einstaklingsverkefnið mitt í Vefforritun 2 kennd í HÍ árið 2025. Þetta er einnig hobby verkefni þannig það er í stöðugri þróun. 
 
-## Get started
+## Keyrsla
 
-1. Install dependencies
+Mín útgáfa er keyrandi á [þessari slóð](https://vef2-flashjapanese.expo.app)
 
-   ```bash
-   npm install
-   ```
+En ef vilji er fyrir því að clonea og búa til eigin útgáfu eru leiðbeininagar hér:
 
-2. Start the app
+Fyrst þarf að clonea verkefnið og keyra 
 
-   ```bash
-    npx expo start
-   ```
+````
+npm install
+````
 
-In the output, you'll find options to open the app in a
+Þar sem síðan notar firebase.google.com til þess að sjá um notendavirkni þarf að útfæra það fyrir eigin útgáfu þar sem ég er með mína aðeins locally hjá mér. 
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Fyrst þarf að búa til aðgang inni á firebase.google.com og búa til nýtt project og bæta við web appi í það project. Síðan þarf að búa til möppu í rót verkefnis sem heitir utils og bæta við skránni firebase.ts í hana. 
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+firebase.ts á að líta svona út:
 
-## Get a fresh project
+````
+// utils/firebase.ts
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-When you're ready, run:
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-```bash
-npm run reset-project
-```
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+export { auth };
+````
 
-## Learn more
+Þar sem gildin sem á að setja í firebaseConfig fást úr appinu sem bætt er við í project inni á firebase aðganginum. 
 
-To learn more about developing your project with Expo, look at the following resources:
+mikilvægt er að í authentication í projectinu þínu sé búið að leyfa email/password login og anonymous login. 
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Þegar þetta er allt komið ætti að vera hægt að keyra
 
-## Join the community
+````
+npm run start
+````
 
-Join our community of developers creating universal apps.
+ýta svo á w á lyklaborðinu og þá opnast appið á localhost. 
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Hægt er að logga sig inn með email og passwordi eða anonymously og skoða appið. Stjórnandi firebase tengingarinnar getur svo séð hvaða userar hafa loggað sig inn inni í projectinu á firebase síðunni. 
+
+
+
